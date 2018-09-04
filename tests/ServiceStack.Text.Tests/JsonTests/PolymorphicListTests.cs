@@ -26,6 +26,8 @@ namespace ServiceStack.Text.Tests.JsonTests
     //[KnownType(typeof(Cat))]
     public abstract class Animal
     {
+        public Animal() { }
+        public Animal(string name) { this.Name = name; }
         public abstract string Name
         {
             get;

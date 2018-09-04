@@ -26,10 +26,14 @@ namespace ServiceStack.Text.Common
 
         public static ParseStringSegmentDelegate GetParseStringSegmentMethod(Type type)
         {
-            var typeConstructor = GetTypeStringConstructor(type);
-            if (typeConstructor != null)
+            if (!type.IsAbstract)
             {
-                return value => typeConstructor.Invoke(new object[] { value.Value });
+                var typeConstructor = GetTypeStringConstructor(type);
+
+                if (typeConstructor != null)
+                {
+                    return value => typeConstructor.Invoke(new object[] { value.Value });
+                }
             }
 
             return null;
